@@ -15,4 +15,5 @@ int main(){
     //std::clog - Printing log messages to the console
     std::clog << "std::clog Output: This is a log message" << std::endl;
 
+    return 0;
 }
