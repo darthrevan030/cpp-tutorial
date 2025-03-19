@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 int main(){
 
@@ -10,4 +11,6 @@ int main(){
     std::cin >> name >> age;
 
     std::cout << "" << name << " is " << age << " years old." << std::endl;
+
+    return 0;
 }
