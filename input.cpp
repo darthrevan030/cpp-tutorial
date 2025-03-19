@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 int main(){
 
@@ -16,4 +17,6 @@ int main(){
 
     // using the inputs from the user, making an output statement
     std::cout << "" << name << " is " << age << " years old." << std::endl;
+
+    return 0;
 }
