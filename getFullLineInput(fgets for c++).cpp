@@ -14,4 +14,6 @@ int main(){
     std::cin >> age;
 
     std::cout << "" << fullName << " is " << age << " years old." << std::endl;
+
+    return 0;
 }
