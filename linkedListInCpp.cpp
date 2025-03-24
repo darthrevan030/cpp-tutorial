@@ -19,7 +19,9 @@ struct Node{
 
 void insertNewNodeToListEnd(Node *&head, double newValue){ /*passes references to pointer instead of the pointer itself. 
                                                         Ensures that any modifications to the head pointer is reflected in 
-                                                        the original linked list*/ 
+                                                        the original linked list. If this is not done, then the pointer in the 
+                                                        linked list cannot be modified, and therefore the new node will not be 
+                                                        linked*/ 
     
     // Creating new Node
     Node *newNode = new Node; // Step 1: allocate memory for new node
@@ -39,6 +41,42 @@ void insertNewNodeToListEnd(Node *&head, double newValue){ /*passes references t
 
 }
 
+/*
+- If list uses dynamic memory, then delete node from memory
+- Requires 2 pointers
+    - One to locate the node to be deleted
+    - One to point to the node before the node to be deleted
+*/
+void deleteNode(Node *&head, double number){
+    Node *nodePtr, *prevNodePtr; // initialise the two pointers 
+
+    if (head == nullptr){ // check if the list is empty
+        return; // do nothing (eat 5 star) if the list is empty
+    }
+
+    if (fabs(head -> value - number)< 1e-9){ // check if the first node is the one to be deleted
+        nodePtr = head;
+        head = head -> next; 
+        delete nodePtr;
+        nodePtr = nullptr;
+    } else {
+        nodePtr = head; // initialise the node pointer to the list head
+        
+        // skip nodes whose value member is not number
+        while (nodePtr != nullptr && fabs(nodePtr -> value - number) > 1e-9){
+            prevNodePtr = nodePtr;
+            nodePtr = nodePtr -> next;
+        }
+
+        // link the previous node to the node after node pointer then delete node pointer
+        if (nodePtr != nullptr){
+            prevNodePtr -> next = nodePtr -> next;
+            delete nodePtr;
+            nodePtr = nullptr;
+        }
+    }
+}
+
 int main(){
 
     Node *head = nullptr; // initialise head pointer
@@ -46,6 +84,11 @@ int main(){
     insertNewNodeToListEnd(head, 12.5);
     insertNewNodeToListEnd(head, 13);
 
+    cout << "1st Node: " << head -> value << endl;
+    cout << "2nd Node: " << head -> next -> value << endl;
+
+    deleteNode(head, 12.5);
+    
     cout << "1st Node: " << head -> value << endl;
     cout << "2nd Node: " << head -> next -> value << endl;
 }
