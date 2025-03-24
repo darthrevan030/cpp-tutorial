@@ -77,6 +77,17 @@ void deleteNode(Node *&head, double number){
     }
 }
 
+// traversing a linked list
+void printList(Node *&head){
+    Node *cur = head;
+
+    while (cur){
+        cout << cur -> value << " -> ";
+        cur = cur -> next;
+    }
+    cout << "NULL" << endl;
+}
+
 int main(){
 
     Node *head = nullptr; // initialise head pointer
