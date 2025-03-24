@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cmath>
+#include <math.h>
 using namespace std;
 
 /* 
@@ -88,19 +90,43 @@ void printList(Node *&head){
     cout << "NULL" << endl;
 }
 
+/*
+- The nodes of a linked list are dynamically allocated
+- When deleting or destroying a linked list, we must remove all nodes used in the list
+where we need to traverse the list
+
+Basic Process
+- Set a pointer nodePtr to the contents of the head pointer
+- While pointer is not nullptr
+    - use another pointer garbage to keep track of the node to be deleted
+    - go to the next node by setting the pointer nodePtr to the pointer field of the current node
+    in the list
+    - deallocate the memory of the current node
+*/
+
+void destroyList(Node *&head){
+    Node *nodePtr = head; // start at the head of the list
+    Node *garbage = nullptr;
+    
+    while (nodePtr != nullptr){
+        garbage = nodePtr; // garbage keeps track of node to be deleted
+        nodePtr = nodePtr -> next; // move on to the next node if any
+        delete garbage; // delete garbage node
+        garbage = nullptr;
+    }
+    head = nullptr;
+}
+
 int main(){
 
     Node *head = nullptr; // initialise head pointer
 
     insertNewNodeToListEnd(head, 12.5);
     insertNewNodeToListEnd(head, 13);
-
-    cout << "1st Node: " << head -> value << endl;
-    cout << "2nd Node: " << head -> next -> value << endl;
+    printList(head);
 
     deleteNode(head, 12.5);
-    
-    cout << "1st Node: " << head -> value << endl;
-    cout << "2nd Node: " << head -> next -> value << endl;
+    printList(head);
+
 }
 
