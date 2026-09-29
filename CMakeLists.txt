@@ -60,9 +60,4 @@ include(GoogleTest)
 # Include test utils
 include(cmake/TestUtils.cmake)
 
-# add_subdirectory(common)
-# add_subdirectory(aos)
-# add_subdirectory(soa)
-# add_subdirectory(utcommon)
-# add_subdirectory(utaos)
-# add_subdirectory(utsoa)
+add_subdirectory(New)
