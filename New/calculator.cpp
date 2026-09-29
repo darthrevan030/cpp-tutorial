@@ -3,10 +3,10 @@
 
 
 int main() {
-    int x = 0;
-    int y = 0;
+    double x = 0;
+    double y = 0;
     char op;
-    
+
     std::cout << "Enter a Number: " << std::endl;
     std::cin >> x;
 
